@@ -65,7 +65,25 @@ Agent 行为基于统计模型模拟（控制组失败率 60-80%，实验组应�
 ## 运行复现
 
 ```bash
-uv run python exps/runner.py
+uv run python exps/runner.py           # 模拟实验（10 项任务，立即出结果）
+uv run python exps/real_llm_runner.py  # 真实 LLM 实验（通过 hermes CLI，每项 ~5 分钟）
 ```
 
 依赖: `open-reflection-protocol>=0.3.0`, `pytest>=9.0`
+
+---
+
+## 后续：真实 LLM 实验
+
+当前实验数据基于统计模拟（控制组失败率 60-80%，实验组应用 Lesson 后全部成功）。
+
+已完成真实 LLM 实验基础设施：
+
+| 组件 | 位置 | 说明 |
+|------|------|------|
+| Java 测试项目 | `exps/assets/task1_auth/` | Maven 项目，包含失败测试用例 |
+| 真实 LLM 运行器 | `exps/real_llm_runner.py` | 通过 `hermes chat -q` 调用 DeepSeek V4 Flash |
+| 10 个任务定义 | `exps/real_llm_runner.py` | 每个任务有独立评分逻辑 |
+| 初步验证 | 3 次控制组调用 | 2/3 正确处理了 null 检查 |
+
+运行 `uv run python exps/real_llm_runner.py` 可获得真实 LLM 数据（每项任务约 5-10 分钟）。
