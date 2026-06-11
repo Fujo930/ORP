@@ -76,14 +76,38 @@ uv run python exps/real_llm_runner.py  # 真实 LLM 实验（通过 hermes CLI�
 ## 后续：真实 LLM 实验
 
 当前实验数据基于统计模拟（控制组失败率 60-80%，实验组应用 Lesson 后全部成功）。
-
-已完成真实 LLM 实验基础设施：
+已完成真实 LLM 实验基础设施和初步验证：
 
 | 组件 | 位置 | 说明 |
 |------|------|------|
-| Java 测试项目 | `exps/assets/task1_auth/` | Maven 项目，包含失败测试用例 |
+| Java 测试项目 | `exps/assets/task1_auth/` | Maven 项目，含可运行失败测试用例 |
 | 真实 LLM 运行器 | `exps/real_llm_runner.py` | 通过 `hermes chat -q` 调用 DeepSeek V4 Flash |
-| 10 个任务定义 | `exps/real_llm_runner.py` | 每个任务有独立评分逻辑 |
-| 初步验证 | 3 次控制组调用 | 2/3 正确处理了 null 检查 |
+| sub-agent 运行器 | 直接使用 Hermes `delegate_task` | 并行调用，每次 ~5-150 秒 |
 
-运行 `uv run python exps/real_llm_runner.py` 可获得真实 LLM 数据（每项任务约 5-10 分钟）。
+### 初步真实结果（Task 1: 匿名用户边界条件）
+
+通过 6 次独立 sub-agent 调用（3 控制组 + 3 实验组）获得：
+
+| 组 | Trial 1 | Trial 2 | Trial 3 | 成功率 |
+|---|---------|---------|---------|--------|
+| Control (无 ORP) | ✓ | ✓ | ✓ | 100% |
+| +ORP (有 Lesson) | ✓ | ✓ | ✓ | 100% |
+
+**关键发现：对于简单的单文件 bug，当前模型（DeepSeek V4 Flash）无论是否有 Lesson 都能正确处理。** ORP 的真正价值不在于教模型解决单个问题，而在于：
+1. **跨运行记忆**：防止同一错误在不同 session 中重复
+2. **可执行回归测试**：将失败编译为持续运行的 Eval
+3. **可量化效果**：追踪 Lesson 是否真正改善了结果
+
+### 扩展建议
+
+运行所有 10 项任务的真实 LLM 实验：
+
+```bash
+# 通过 sub-agent（推荐，可并行，更快）
+hermes chat（手动调用 delegate_task）
+
+# 或通过 hermes CLI（串行，较慢）
+uv run python exps/real_llm_runner.py --all --trials 5
+```
+
+预计耗时：10 项 × 5 次 × 60 秒 ≈ 50 分钟（串行）或 ~10 分钟（并行）。
