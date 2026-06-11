@@ -75,18 +75,8 @@ candidate -> active -> under_review -> deprecated -> rejected
 
 ## Install
 
-From source:
-
 ```bash
-git clone https://github.com/Fujo930/ORP.git
-cd ORP
-uv sync
-```
-
-Then run commands with `uv run`, for example:
-
-```bash
-uv run orp --help
+pip install open-reflection-protocol
 ```
 
 Requires Python 3.10+.
@@ -140,7 +130,7 @@ orp mcp-server --transport stdio
 ## Run the Demo
 
 ```bash
-git clone https://github.com/Fujo930/ORP.git
+git clone https://github.com/Fujo930/ORP
 cd ORP
 uv run python demo/orp_demo.py
 ```
@@ -156,6 +146,7 @@ Run 2: Agent applies Lesson -> PASSED
 
 Before: 34/35 tests, 1 unproven claim
 After:  35/35 tests, 0 unproven claims
+Estimated effect: 0.5
 ```
 
 ---
@@ -216,7 +207,7 @@ Tests (58 total):
 
 ```bash
 uv run pytest -q
-# 58 passed in 0.66s
+# 58 passed in 0.68s
 ```
 
 Key design documents in this repo:
