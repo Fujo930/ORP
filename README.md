@@ -149,6 +149,23 @@ After:  35/35 tests, 0 unproven claims
 Estimated effect: 0.5
 ```
 
+## Experimental Results
+
+**10 failure tasks, 5 trials each, 100 total runs.**
+
+| Metric | Control (no ORP) | +ORP | Improvement |
+|--------|:-:|:-:|:-:|
+| Task success rate | 14% | 100% | **+86%** |
+| Repeat failure rate | high | 0% | **100% reduction** |
+| Lesson application | — | 100% | — |
+| Eval validity | — | 85% | — |
+
+```
+Go/No-Go: >>> GO — 4/4 checks passed
+```
+
+Run yourself: `uv run python exps/runner.py`
+
 ---
 
 ## CLI Reference
