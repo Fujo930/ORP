@@ -75,8 +75,18 @@ candidate -> active -> under_review -> deprecated -> rejected
 
 ## Install
 
+From source:
+
 ```bash
-pip install open-reflection-protocol
+git clone https://github.com/Fujo930/ORP.git
+cd ORP
+uv sync
+```
+
+Then run commands with `uv run`, for example:
+
+```bash
+uv run orp --help
 ```
 
 Requires Python 3.10+.
@@ -130,8 +140,8 @@ orp mcp-server --transport stdio
 ## Run the Demo
 
 ```bash
-git clone https://github.com/hooya/orp
-cd orp
+git clone https://github.com/Fujo930/ORP.git
+cd ORP
 uv run python demo/orp_demo.py
 ```
 

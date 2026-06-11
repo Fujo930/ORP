@@ -23,7 +23,7 @@ classifiers = [
 ]
 
 [project.urls]
-Home = "https://github.com/hooya/orp"
+Home = "https://github.com/Fujo930/ORP"
 
 [project.scripts]
 orp = "orp.cli:main"
