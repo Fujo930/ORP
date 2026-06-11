@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.orp/
+orp_report.html
+orp_demo_report.html
+.DS_Store
+.venv/

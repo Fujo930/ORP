@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "open-reflection-protocol"
+version = "0.3.0"
+description = "Turn agent failures into regression tests, reusable lessons, and measurable improvements"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "ORP Contributors"}]
+requires-python = ">=3.10"
+dependencies = ["pydantic>=2.0"]
+keywords = ["ai", "agent", "reflection", "observability", "opentelemetry"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Home = "https://github.com/hooya/orp"
+
+[project.scripts]
+orp = "orp.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["orp"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
