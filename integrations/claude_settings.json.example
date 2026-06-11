@@ -1,0 +1,11 @@
+# ORP MCP Server for Claude Code
+# Save to ~/.claude/settings.json or project-level .claude/settings.json
+
+{
+  "mcpServers": {
+    "orp": {
+      "command": "orp",
+      "args": ["mcp-server", "--transport", "stdio"]
+    }
+  }
+}

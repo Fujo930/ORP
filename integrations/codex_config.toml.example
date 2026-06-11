@@ -1,0 +1,13 @@
+# ORP MCP Server for Codex CLI
+# Save to ~/.codex/config.toml
+
+[mcp_servers.orp]
+command = "orp"
+args = ["mcp-server", "--transport", "stdio"]
+
+# Or with uv (recommended if orp is not on PATH):
+# command = "uv"
+# args = ["run", "orp", "mcp-server", "--transport", "stdio"]
+
+# Optional: auto-start when Codex launches
+# auto_start = true
