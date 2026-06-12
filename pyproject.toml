@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "open-reflection-protocol"
-version = "0.3.0"
+version = "1.0.0"
 description = "Turn agent failures into regression tests, reusable lessons, and measurable improvements"
 readme = "README.md"
 license = {text = "MIT"}

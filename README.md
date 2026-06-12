@@ -6,6 +6,29 @@
 
 ---
 
+## Quick Start: 10 Seconds
+
+```bash
+pip install open-reflection-protocol
+
+python demo/quick_start.py
+# 1. ✅ Experience 已保存
+# 2. ✅ Lesson 已生成
+# 3. ✅ Agent 查询到 1 条 Lesson
+# 4. ✅ Agent 确认收到
+# 5. ✅ Agent 报告效果: success
+```
+
+Any agent can query ORP lessons via 3 MCP tools:
+
+```python
+from orp.mcp_server import MCPServer
+mcp = MCPServer()
+mcp.handle_call("orp_retrieve_lessons", {"task": "修复登录", "limit": 3})
+mcp.handle_call("orp_acknowledge_lesson", {"lesson_id": "..."})
+mcp.handle_call("orp_report_outcome", {"lesson_id": "...", "outcome": "success"})
+```
+
 ## Demo: 30 Seconds
 
 A coding agent fixes an auth bug but misses the anonymous user path. Tests fail at 34/35.
